@@ -29,9 +29,33 @@ export const BAYBAYIN = {
 		pamudpod: '\u1715',
 	},
 	raArchaic: '\u171f',
+	punctuation: {
+		single: '\u1735',
+		double: '\u1736',
+	},
 };
 
-export function convert(word: Token[]) {
+// convert array of tokens into characters we can write in Baybayin
+function lex(tokens: Token[]) {
+	return tokens
+		.map((token) => {
+			// TODO generalize these substitutions for syllables with initial consonants
+			if (token === 'o') {
+				return 'u';
+			}
+
+			if (token === 'e') {
+				return 'i';
+			}
+
+			return token;
+		})
+		.flat();
+}
+
+export function convert(tokens: Token[]) {
 	// TODO fix TS error: `'Token' can't be used to index type '{ ... }``
-	return word.map((token) => BAYBAYIN[token]).join('');
+	return lex(tokens)
+		.map((token) => BAYBAYIN[token])
+		.join('');
 }

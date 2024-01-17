@@ -7,21 +7,23 @@ describe('converter', () => {
 		const input = 'talaga';
 		const tokens = tokenize(input);
 		const output = convert(tokens);
-		expect(output).toBe(BAYBAYIN.ta + BAYBAYIN.la + BAYBAYIN.ga);
+		expect(output).toBe([BAYBAYIN.ta, BAYBAYIN.la, BAYBAYIN.ga].join(''));
 	});
 
-	test.skip('oo', () => {
+	test('oo', () => {
 		const input = 'oo';
 		const tokens = tokenize(input);
 		const output = convert(tokens);
-		expect(output).toBe(BAYBAYIN.u + BAYBAYIN.u);
+		expect(output).toBe([BAYBAYIN.u, BAYBAYIN.u].join(''));
 	});
 
 	test.skip('at', () => {
 		const input = 'at';
 		const tokens = tokenize(input);
 		const output = convert(tokens);
-		expect(output).toBe(BAYBAYIN.a + BAYBAYIN.ta + BAYBAYIN.virama.kudlit);
+		expect(output).toBe(
+			[BAYBAYIN.a, BAYBAYIN.ta, BAYBAYIN.virama.kudlit].join('')
+		);
 	});
 
 	test.skip('puti', () => {
@@ -29,7 +31,45 @@ describe('converter', () => {
 		const tokens = tokenize(input);
 		const output = convert(tokens);
 		expect(output).toBe(
-			BAYBAYIN.pa + BAYBAYIN.vowelSign.u + BAYBAYIN.ta + BAYBAYIN.vowelSign.i
+			[
+				BAYBAYIN.pa,
+				BAYBAYIN.vowelSign.u,
+				BAYBAYIN.ta,
+				BAYBAYIN.vowelSign.i,
+			].join('')
+		);
+	});
+
+	test.skip('single punctuation', () => {
+		const input = 'hinirang,';
+		const tokens = tokenize(input);
+		const output = convert(tokens);
+		expect(output).toEqual(
+			[
+				BAYBAYIN.ha,
+				BAYBAYIN.vowelSign.i,
+				BAYBAYIN.na,
+				BAYBAYIN.vowelSign.i,
+				BAYBAYIN.ra,
+				BAYBAYIN.nga,
+				BAYBAYIN.virama.kudlit,
+				BAYBAYIN.punctuation.single,
+			].join('')
+		);
+	});
+
+	test.skip('double punctuation', () => {
+		const input = 'buhay.';
+		const tokens = tokenize(input);
+		const output = convert(tokens);
+		expect(output).toEqual(
+			[
+				BAYBAYIN.ba,
+				BAYBAYIN.u,
+				BAYBAYIN.ha,
+				BAYBAYIN.ya,
+				BAYBAYIN.virama.kudlit,
+			].join('')
 		);
 	});
 });

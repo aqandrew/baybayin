@@ -107,7 +107,13 @@ describe('tokenizer', () => {
 
 	describe.skip('multiple words');
 
-	test.skip('single punctuation');
+	test('single punctuation', () => {
+		const tokens = tokenize('hinirang,');
+		expect(tokens).toEqual(['hi', 'ni', 'ra', 'ng', ',']);
+	});
 
-	test.skip('double punctuation');
+	test('double punctuation', () => {
+		const tokens = tokenize('buhay.');
+		expect(tokens).toEqual(['bu', 'ha', 'y', '.']);
+	});
 });

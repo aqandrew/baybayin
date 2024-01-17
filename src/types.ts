@@ -22,4 +22,14 @@ export type Consonant = (typeof CONSONANTS)[number];
 
 type ConsonantThenVowel = `${Consonant}${Vowel}`;
 
-export type Token = Vowel | Consonant | ConsonantThenVowel;
+type PunctuationSingle = ',';
+
+export const PUNCTUATION_DOUBLE = ['.', '!', '?'] as const;
+export type PunctuationDouble = (typeof PUNCTUATION_DOUBLE)[number];
+
+export type Token =
+	| Vowel
+	| Consonant
+	| ConsonantThenVowel
+	| PunctuationSingle
+	| PunctuationDouble;
