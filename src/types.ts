@@ -34,4 +34,4 @@ export type Token =
 	| PunctuationSingle
 	| PunctuationDouble;
 
-export type Lexeme = Token | 'final';
+export type Lexeme = Token | 'final' | 'markU' | 'markI';

@@ -26,7 +26,7 @@ describe('converter', () => {
 		);
 	});
 
-	test.skip('puti', () => {
+	test('puti', () => {
 		const input = 'puti';
 		const tokens = tokenize(input);
 		const output = convert(tokens);
@@ -40,7 +40,7 @@ describe('converter', () => {
 		);
 	});
 
-	test.skip('hangin', () => {
+	test('hangin', () => {
 		const input = 'hangin';
 		const tokens = tokenize(input);
 		const output = convert(tokens);
