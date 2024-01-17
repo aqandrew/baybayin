@@ -20,7 +20,7 @@ export const CONSONANTS = [
 ] as const;
 export type Consonant = (typeof CONSONANTS)[number];
 
-type ConsonantThenVowel = `${Consonant}${Vowel}`;
+export type ConsonantThenVowel = `${Consonant}${Vowel}`;
 
 type PunctuationSingle = ',';
 

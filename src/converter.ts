@@ -1,4 +1,4 @@
-import { Lexeme, Token } from './types';
+import { ConsonantThenVowel, Lexeme, Token } from './types';
 import { isConsonant } from './utils';
 
 // https://www.unicode.org/charts/PDF/U1700.pdf
@@ -36,6 +36,22 @@ export const BAYBAYIN = {
 	},
 };
 
+const BASE_MONOGRAPH_CHARACTERS = Object.keys(BAYBAYIN).filter(
+	(key) => key.length === 2
+);
+
+function getBaseCharacter(token: ConsonantThenVowel) {
+	const lengthOfConsonant = [...token].toSpliced(token.length - 1).length;
+
+	if (lengthOfConsonant === 2) {
+		return 'nga';
+	}
+
+	return BASE_MONOGRAPH_CHARACTERS.find(
+		(character) => character[0] === token[0]
+	);
+}
+
 // convert array of tokens into characters we can write in Baybayin
 function lex(tokens: Token[]) {
 	const lexemes: Lexeme[] = [];
@@ -52,9 +68,7 @@ function lex(tokens: Token[]) {
 
 		// after tokenizing, consonant only appears by itself if it's at the end of a word
 		if (isConsonant(token)) {
-			// TODO find the appropriate -a character
-
-			// find the virama kudlit
+			lexemes.push(getBaseCharacter(token));
 			lexemes.push('final');
 		}
 
@@ -67,6 +81,8 @@ function lex(tokens: Token[]) {
 export function convert(tokens: Token[]) {
 	// TODO fix TS error: `'Token' can't be used to index type '{ ... }``
 	return lex(tokens)
-		.map((token) => BAYBAYIN[token])
+		.map((token) =>
+			token === 'final' ? BAYBAYIN.virama.kudlit : BAYBAYIN[token]
+		)
 		.join('');
 }

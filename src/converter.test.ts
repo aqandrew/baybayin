@@ -17,7 +17,7 @@ describe('converter', () => {
 		expect(output).toBe([BAYBAYIN.u, BAYBAYIN.u].join(''));
 	});
 
-	test.skip('at', () => {
+	test('at', () => {
 		const input = 'at';
 		const tokens = tokenize(input);
 		const output = convert(tokens);
