@@ -59,12 +59,12 @@ function lex(tokens: Token[]) {
 
 		if (token.length > 1 && token.at(-1) !== 'a' && token !== 'ng') {
 			if (token.at(-1) === 'u') {
-				lexemes.push(getBaseCharacter(token));
+				lexemes.push(getBaseCharacter(token) as Lexeme);
 				lexemes.push('markU');
 			}
 
 			if (token.at(-1) === 'i') {
-				lexemes.push(getBaseCharacter(token));
+				lexemes.push(getBaseCharacter(token) as Lexeme);
 				lexemes.push('markI');
 			}
 
@@ -73,7 +73,7 @@ function lex(tokens: Token[]) {
 
 		// after tokenizing, consonant only appears by itself if it's at the end of a word
 		if (isConsonant(token)) {
-			lexemes.push(getBaseCharacter(token));
+			lexemes.push(getBaseCharacter(token) as Lexeme);
 			lexemes.push('final');
 			return;
 		}
@@ -87,20 +87,20 @@ function lex(tokens: Token[]) {
 export function convert(tokens: Token[]) {
 	const lexemes = lex(tokens);
 
-	// TODO fix TS error: `'Token' can't be used to index type '{ ... }``
+	// TODO fix TS error: `'Lexeme' can't be used to index type '{ ... }``
 	return lexemes
-		.map((token) =>
-			token === 'final'
+		.map((lexeme) =>
+			lexeme === 'final'
 				? BAYBAYIN.virama.kudlit
-				: token === 'markU'
+				: lexeme === 'markU'
 				? BAYBAYIN.vowelSign.u
-				: token === 'markI'
+				: lexeme === 'markI'
 				? BAYBAYIN.vowelSign.i
-				: token === ','
+				: lexeme === ','
 				? BAYBAYIN.punctuation.single
-				: isPunctuationDouble(token)
+				: isPunctuationDouble(lexeme)
 				? BAYBAYIN.punctuation.double
-				: BAYBAYIN[token]
+				: BAYBAYIN[lexeme]
 		)
 		.join('');
 }
