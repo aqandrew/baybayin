@@ -1,4 +1,5 @@
-import { Token } from './types';
+import { Lexeme, Token } from './types';
+import { isConsonant } from './utils';
 
 // https://www.unicode.org/charts/PDF/U1700.pdf
 export const BAYBAYIN = {
@@ -37,20 +38,30 @@ export const BAYBAYIN = {
 
 // convert array of tokens into characters we can write in Baybayin
 function lex(tokens: Token[]) {
-	return tokens
-		.map((token) => {
-			// TODO generalize these substitutions for syllables with initial consonants
-			if (token === 'o') {
-				return 'u';
-			}
+	const lexemes: Lexeme[] = [];
 
-			if (token === 'e') {
-				return 'i';
-			}
+	tokens.forEach((token) => {
+		// TODO generalize these substitutions for syllables with initial consonants
+		if (token === 'o') {
+			lexemes.push('u');
+		}
 
-			return token;
-		})
-		.flat();
+		if (token === 'e') {
+			lexemes.push('i');
+		}
+
+		// after tokenizing, consonant only appears by itself if it's at the end of a word
+		if (isConsonant(token)) {
+			// TODO find the appropriate -a character
+
+			// find the virama kudlit
+			lexemes.push('final');
+		}
+
+		lexemes.push(token);
+	});
+
+	return lexemes;
 }
 
 export function convert(tokens: Token[]) {

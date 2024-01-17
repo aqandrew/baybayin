@@ -102,6 +102,11 @@ describe('tokenizer', () => {
 				const tokens = tokenize('tulungan');
 				expect(tokens).toEqual(['tu', 'lu', 'nga', 'n']);
 			});
+
+			test('ngi in middle of word', () => {
+				const tokens = tokenize('hangin');
+				expect(tokens).toEqual(['ha', 'ngi', 'n']);
+			});
 		});
 	});
 

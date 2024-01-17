@@ -40,6 +40,21 @@ describe('converter', () => {
 		);
 	});
 
+	test.skip('hangin', () => {
+		const input = 'hangin';
+		const tokens = tokenize(input);
+		const output = convert(tokens);
+		expect(output).toBe(
+			[
+				BAYBAYIN.ha,
+				BAYBAYIN.nga,
+				BAYBAYIN.vowelSign.i,
+				BAYBAYIN.na,
+				BAYBAYIN.virama.kudlit,
+			].join('')
+		);
+	});
+
 	test.skip('single punctuation', () => {
 		const input = 'hinirang,';
 		const tokens = tokenize(input);

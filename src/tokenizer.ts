@@ -1,24 +1,5 @@
-import {
-	CONSONANTS,
-	Consonant,
-	PUNCTUATION_DOUBLE,
-	PunctuationDouble,
-	Token,
-	VOWELS,
-	Vowel,
-} from './types';
-
-function isVowel(character: string) {
-	return VOWELS.includes(character as Vowel);
-}
-
-function isConsonant(character: string) {
-	return CONSONANTS.includes(character as Consonant);
-}
-
-function isPunctuationDouble(character: string) {
-	return PUNCTUATION_DOUBLE.includes(character as PunctuationDouble);
-}
+import { Token } from './types';
+import { isConsonant, isVowel } from './utils';
 
 export function tokenize(inputString: string) {
 	const tokens: Token[] = [];

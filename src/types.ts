@@ -33,3 +33,5 @@ export type Token =
 	| ConsonantThenVowel
 	| PunctuationSingle
 	| PunctuationDouble;
+
+export type Lexeme = Token | 'final';
