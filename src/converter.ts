@@ -1,5 +1,5 @@
-import { ConsonantThenVowel, Lexeme, Token } from './types';
-import { isConsonant } from './utils';
+import { Lexeme, Token } from './types';
+import { isConsonant, isPunctuationDouble } from './utils';
 
 // https://www.unicode.org/charts/PDF/U1700.pdf
 export const BAYBAYIN = {
@@ -85,9 +85,9 @@ function lex(tokens: Token[]) {
 }
 
 export function convert(tokens: Token[]) {
-	// TODO fix TS error: `'Token' can't be used to index type '{ ... }``
 	const lexemes = lex(tokens);
 
+	// TODO fix TS error: `'Token' can't be used to index type '{ ... }``
 	return lexemes
 		.map((token) =>
 			token === 'final'
@@ -98,6 +98,8 @@ export function convert(tokens: Token[]) {
 				? BAYBAYIN.vowelSign.i
 				: token === ','
 				? BAYBAYIN.punctuation.single
+				: isPunctuationDouble(token)
+				? BAYBAYIN.punctuation.double
 				: BAYBAYIN[token]
 		)
 		.join('');

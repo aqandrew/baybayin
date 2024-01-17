@@ -73,17 +73,18 @@ describe('converter', () => {
 		);
 	});
 
-	test.skip('double punctuation', () => {
+	test('double punctuation', () => {
 		const input = 'buhay.';
 		const tokens = tokenize(input);
 		const output = convert(tokens);
 		expect(output).toBe(
 			[
 				BAYBAYIN.ba,
-				BAYBAYIN.u,
+				BAYBAYIN.vowelSign.u,
 				BAYBAYIN.ha,
 				BAYBAYIN.ya,
 				BAYBAYIN.virama.kudlit,
+				BAYBAYIN.punctuation.double,
 			].join('')
 		);
 	});
