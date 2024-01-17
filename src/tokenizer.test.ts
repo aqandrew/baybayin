@@ -68,9 +68,14 @@ describe('tokenizer', () => {
 				expect(tokens).toEqual(['la', 'ng']);
 			});
 
-			test.skip('ng', () => {
+			test('ng', () => {
 				const tokens = tokenize('ng');
 				expect(tokens).toEqual(['na', 'ng']);
+			});
+
+			test.skip('mga', () => {
+				const tokens = tokenize('mga');
+				expect(tokens).toEqual(['ma', 'nga']);
 			});
 		});
 

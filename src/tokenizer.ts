@@ -10,7 +10,8 @@ function isConsonant(character: string) {
 
 export function tokenize(inputString: string) {
 	const tokens: Token[] = [];
-	const inputArray = [...inputString.toLowerCase()];
+	const inputStringSanitized = inputString.toLowerCase();
+	const inputArray = [...inputStringSanitized];
 	let index = 0;
 
 	while (index < inputArray.length) {
@@ -42,6 +43,11 @@ export function tokenize(inputString: string) {
 
 		tokens.push(value as Token);
 		index += value.length;
+	}
+
+	// 'ng' is pronounced 'nang'
+	if (inputStringSanitized === 'ng') {
+		tokens.unshift('na');
 	}
 
 	return tokens;
