@@ -50,5 +50,11 @@ export function tokenize(inputString: string) {
 		tokens.unshift('na');
 	}
 
+	// 'mga' is pronounced 'manga'
+	if (inputStringSanitized === 'mga') {
+		tokens[0] = 'ma';
+		tokens[1] = 'nga';
+	}
+
 	return tokens;
 }

@@ -73,7 +73,7 @@ describe('tokenizer', () => {
 				expect(tokens).toEqual(['na', 'ng']);
 			});
 
-			test.skip('mga', () => {
+			test('mga', () => {
 				const tokens = tokenize('mga');
 				expect(tokens).toEqual(['ma', 'nga']);
 			});
