@@ -55,11 +55,11 @@ describe('converter', () => {
 		);
 	});
 
-	test.skip('single punctuation', () => {
+	test('single punctuation', () => {
 		const input = 'hinirang,';
 		const tokens = tokenize(input);
 		const output = convert(tokens);
-		expect(output).toEqual(
+		expect(output).toBe(
 			[
 				BAYBAYIN.ha,
 				BAYBAYIN.vowelSign.i,
@@ -77,7 +77,7 @@ describe('converter', () => {
 		const input = 'buhay.';
 		const tokens = tokenize(input);
 		const output = convert(tokens);
-		expect(output).toEqual(
+		expect(output).toBe(
 			[
 				BAYBAYIN.ba,
 				BAYBAYIN.u,

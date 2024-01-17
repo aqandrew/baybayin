@@ -40,10 +40,8 @@ const BASE_MONOGRAPH_CHARACTERS = Object.keys(BAYBAYIN).filter(
 	(key) => key.length === 2
 );
 
-function getBaseCharacter(token: ConsonantThenVowel) {
-	const lengthOfConsonant = [...token].toSpliced(token.length - 1).length;
-
-	if (lengthOfConsonant === 2) {
+function getBaseCharacter(token: Token) {
+	if (token.substring(0, 2) === 'ng') {
 		return 'nga';
 	}
 
@@ -59,7 +57,7 @@ function lex(tokens: Token[]) {
 	tokens.forEach((token) => {
 		token = token.replace('o', 'u').replace('e', 'i') as Token;
 
-		if (token.length > 1) {
+		if (token.length > 1 && token.at(-1) !== 'a' && token !== 'ng') {
 			if (token.at(-1) === 'u') {
 				lexemes.push(getBaseCharacter(token));
 				lexemes.push('markU');
@@ -69,12 +67,15 @@ function lex(tokens: Token[]) {
 				lexemes.push(getBaseCharacter(token));
 				lexemes.push('markI');
 			}
+
+			return;
 		}
 
 		// after tokenizing, consonant only appears by itself if it's at the end of a word
 		if (isConsonant(token)) {
 			lexemes.push(getBaseCharacter(token));
 			lexemes.push('final');
+			return;
 		}
 
 		lexemes.push(token);
@@ -85,7 +86,9 @@ function lex(tokens: Token[]) {
 
 export function convert(tokens: Token[]) {
 	// TODO fix TS error: `'Token' can't be used to index type '{ ... }``
-	return lex(tokens)
+	const lexemes = lex(tokens);
+
+	return lexemes
 		.map((token) =>
 			token === 'final'
 				? BAYBAYIN.virama.kudlit
@@ -93,6 +96,8 @@ export function convert(tokens: Token[]) {
 				? BAYBAYIN.vowelSign.u
 				: token === 'markI'
 				? BAYBAYIN.vowelSign.i
+				: token === ','
+				? BAYBAYIN.punctuation.single
 				: BAYBAYIN[token]
 		)
 		.join('');
