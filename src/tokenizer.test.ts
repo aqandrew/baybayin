@@ -26,7 +26,10 @@ describe('tokenizer', () => {
 				expect(tokens).toEqual(['mo']);
 			});
 
-			test.skip('U vowel');
+			test('U vowel', () => {
+				const tokens = tokenize('uy');
+				expect(tokens).toEqual(['u', 'y']);
+			});
 
 			test('I vowel', () => {
 				const tokens = tokenize('si');
