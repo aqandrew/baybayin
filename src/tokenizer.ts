@@ -4,11 +4,11 @@ import { isConsonant, isVowel } from './utils';
 export function tokenize(inputString: string) {
 	const tokens: Token[] = [];
 	const inputStringSanitized = inputString.toLowerCase();
-	const inputArray = [...inputStringSanitized];
+	const inputArray = [...inputStringSanitized] as Token[];
 	let index = 0;
 
 	while (index < inputArray.length) {
-		let value = inputArray[index] as Token;
+		let value = inputArray[index];
 		const nextIndex = index + 1;
 
 		if (nextIndex !== inputArray.length) {
