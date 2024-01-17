@@ -56,11 +56,6 @@ describe('tokenizer', () => {
 				expect(tokens).toEqual(['nga']);
 			});
 
-			test('initial digraph x2', () => {
-				const tokens = tokenize('nganga');
-				expect(tokens).toEqual(['nga', 'nga']);
-			});
-
 			test('initial vowel + final digraph', () => {
 				const tokens = tokenize('ang');
 				expect(tokens).toEqual(['a', 'ng']);
@@ -96,6 +91,16 @@ describe('tokenizer', () => {
 			test('initial consonant syllable followed by initial vowel syllable', () => {
 				const tokens = tokenize('laruin');
 				expect(tokens).toEqual(['la', 'ru', 'i', 'n']);
+			});
+
+			test('initial digraph x2', () => {
+				const tokens = tokenize('nganga');
+				expect(tokens).toEqual(['nga', 'nga']);
+			});
+
+			test('nga in middle of word', () => {
+				const tokens = tokenize('tulungan');
+				expect(tokens).toEqual(['tu', 'lu', 'nga', 'n']);
 			});
 		});
 	});
