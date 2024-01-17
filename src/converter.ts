@@ -57,14 +57,7 @@ function lex(tokens: Token[]) {
 	const lexemes: Lexeme[] = [];
 
 	tokens.forEach((token) => {
-		// TODO generalize these substitutions for syllables with initial consonants
-		if (token === 'o') {
-			lexemes.push('u');
-		}
-
-		if (token === 'e') {
-			lexemes.push('i');
-		}
+		token = token.replace('o', 'u').replace('e', 'i') as Token;
 
 		// after tokenizing, consonant only appears by itself if it's at the end of a word
 		if (isConsonant(token)) {
