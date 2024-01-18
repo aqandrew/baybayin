@@ -71,7 +71,7 @@ function lex(tokens: Token[]) {
 			return;
 		}
 
-		// after tokenizing, consonant only appears by itself if it's at the end of a word
+		// after tokenizing, consonant only appears by itself if it's at the end of a syllable
 		if (isConsonant(token)) {
 			lexemes.push(getBaseCharacter(token) as Lexeme);
 			lexemes.push('final');

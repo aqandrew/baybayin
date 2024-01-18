@@ -55,6 +55,24 @@ describe('converter', () => {
 		);
 	});
 
+	test('baybayin', () => {
+		const input = 'baybayin';
+		const tokens = tokenize(input);
+		const output = convert(tokens);
+		expect(output).toBe(
+			[
+				BAYBAYIN.ba,
+				BAYBAYIN.ya,
+				BAYBAYIN.virama.kudlit,
+				BAYBAYIN.ba,
+				BAYBAYIN.ya,
+				BAYBAYIN.vowelSign.i,
+				BAYBAYIN.na,
+				BAYBAYIN.virama.kudlit,
+			].join('')
+		);
+	});
+
 	test('single punctuation', () => {
 		const input = 'hinirang,';
 		const tokens = tokenize(input);
