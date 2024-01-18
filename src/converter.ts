@@ -87,7 +87,6 @@ function lex(tokens: Token[]) {
 export function convert(tokens: Token[]) {
 	const lexemes = lex(tokens);
 
-	// TODO fix TS error: `'Lexeme' can't be used to index type '{ ... }``
 	return lexemes
 		.map((lexeme) =>
 			lexeme === 'final'
@@ -100,7 +99,7 @@ export function convert(tokens: Token[]) {
 				? BAYBAYIN.punctuation.single
 				: isPunctuationDouble(lexeme)
 				? BAYBAYIN.punctuation.double
-				: BAYBAYIN[lexeme]
+				: BAYBAYIN[lexeme as keyof typeof BAYBAYIN]
 		)
 		.join('');
 }
