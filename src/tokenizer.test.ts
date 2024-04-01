@@ -110,7 +110,29 @@ describe('tokenizer', () => {
 		});
 	});
 
-	describe.skip('multiple words');
+	test('multiple words', () => {
+		const tokens = tokenize('kaya kong sumulat sa baybayin');
+		expect(tokens).toEqual([
+			'ka',
+			'ya',
+			' ',
+			'ko',
+			'ng',
+			' ',
+			'su',
+			'mu',
+			'la',
+			't',
+			' ',
+			'sa',
+			' ',
+			'ba',
+			'y',
+			'ba',
+			'yi',
+			'n',
+		]);
+	});
 
 	test('single punctuation (hinirang,)', () => {
 		const tokens = tokenize('hinirang,');
