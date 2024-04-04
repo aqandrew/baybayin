@@ -30,7 +30,7 @@ export default function KeyboardPage() {
 
 			<div className="radio-group">
 				{keyboardDisplays.map((display) => (
-					<label>
+					<label key={display}>
 						<input
 							type="radio"
 							name="keyboard-display"
