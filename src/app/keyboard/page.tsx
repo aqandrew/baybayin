@@ -1,6 +1,6 @@
 'use client';
 
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, MouseEvent, useState } from 'react';
 import Keyboard from '@/components/Keyboard';
 import './page.css';
 
@@ -8,6 +8,7 @@ const keyboardDisplays = ['latin', 'baybayin', 'both'] as const;
 export type KeyboardDisplay = (typeof keyboardDisplays)[number];
 
 export default function KeyboardPage() {
+	const [baybayinText, setBaybayinText] = useState('');
 	const [keyboardDisplay, setKeyboardDisplay] =
 		useState<KeyboardDisplay>('latin');
 
@@ -20,13 +21,23 @@ export default function KeyboardPage() {
 		setKeyboardDisplay((target as HTMLInputElement).value as KeyboardDisplay);
 	}
 
+	function handleInput(event: MouseEvent) {
+		const { target } = event;
+		setBaybayinText(
+			baybayinText + (target as HTMLButtonElement).dataset.character
+		);
+	}
+
 	return (
 		<>
 			<h1>keyboard</h1>
 
-			<textarea name="text" />
+			<label>
+				Baybayin text
+				<textarea id="text" name="text" value={baybayinText} readOnly />
+			</label>
 
-			<Keyboard keyboardDisplay={keyboardDisplay} />
+			<Keyboard keyboardDisplay={keyboardDisplay} handleInput={handleInput} />
 
 			<div className="radio-group">
 				{keyboardDisplays.map((display) => (

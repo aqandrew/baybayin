@@ -1,6 +1,7 @@
+import { MouseEventHandler } from 'react';
 import { BAYBAYIN } from '@/converter';
-import './Keyboard.css';
 import { KeyboardDisplay } from '@/app/keyboard/page';
+import './Keyboard.css';
 
 const KEYS: (keyof typeof BAYBAYIN)[] = [
 	'a',
@@ -25,9 +26,13 @@ const KEYS: (keyof typeof BAYBAYIN)[] = [
 
 interface KeyboardProps {
 	keyboardDisplay: KeyboardDisplay;
+	handleInput: MouseEventHandler;
 }
 
-export default function Keyboard({ keyboardDisplay }: KeyboardProps) {
+export default function Keyboard({
+	keyboardDisplay,
+	handleInput,
+}: KeyboardProps) {
 	return (
 		<div className="Keyboard">
 			{KEYS.map((key) => {
@@ -40,8 +45,11 @@ export default function Keyboard({ keyboardDisplay }: KeyboardProps) {
 
 				return (
 					<button
-						key={key}
 						dangerouslySetInnerHTML={{ __html: label[keyboardDisplay] }}
+						aria-label={key}
+						data-character={character}
+						onClick={handleInput}
+						key={key}
 					/>
 				);
 			})}

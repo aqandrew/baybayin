@@ -8,3 +8,7 @@ label,
 button {
 	cursor: pointer;
 }
+
+textarea {
+	display: block;
+}

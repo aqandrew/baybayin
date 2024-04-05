@@ -12,7 +12,8 @@
 	"dependencies": {
 		"next": "14.0.4",
 		"react": "^18",
-		"react-dom": "^18"
+		"react-dom": "^18",
+		"vite-tsconfig-paths": "^4.3.2"
 	},
 	"devDependencies": {
 		"@testing-library/react": "^14.1.2",
