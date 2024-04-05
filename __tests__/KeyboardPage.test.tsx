@@ -1,25 +1,42 @@
-import { beforeAll, describe, expect, test } from 'vitest';
+import { afterEach, beforeAll, describe, expect, it, test } from 'vitest';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { convertToBaybayin } from '@/utils';
 import KeyboardPage from '@/app/keyboard/page';
 
 describe('KeyboardPage', () => {
 	let textarea: HTMLTextAreaElement;
+	let clearButton: HTMLButtonElement;
 
 	beforeAll(async () => {
 		render(<KeyboardPage />);
 		textarea = await screen.findByLabelText('Baybayin text');
+		clearButton = await screen.findByText('clear');
 	});
 
-	test('renders empty text input', () => {
-		expect(textarea.textContent).toMatch('');
+	afterEach(() => {
+		fireEvent.click(clearButton);
 	});
 
-	test('inputs `a` characters', () => {
+	it('renders empty text input', () => {
+		expect(textarea.textContent).toBe('');
+	});
+
+	it('inputs `a` characters', () => {
 		fireEvent.click(screen.getByLabelText('a'));
 		fireEvent.click(screen.getByLabelText('ba'));
 		fireEvent.click(screen.getByLabelText('ka'));
 		fireEvent.click(screen.getByLabelText('da'));
-		expect(textarea.textContent).toMatch(convertToBaybayin('abakada'));
+		expect(textarea.textContent).toBe(convertToBaybayin('abakada'));
+	});
+
+	test('clear button', () => {
+		fireEvent.click(screen.getByLabelText('nga'));
+		fireEvent.click(screen.getByLabelText('nga'));
+
+		expect(textarea.textContent).toBe(convertToBaybayin('nganga'));
+
+		fireEvent.click(clearButton);
+
+		expect(textarea.textContent).toBe('');
 	});
 });

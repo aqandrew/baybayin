@@ -28,6 +28,10 @@ export default function KeyboardPage() {
 		);
 	}
 
+	function handleClear() {
+		setBaybayinText('');
+	}
+
 	return (
 		<>
 			<h1>keyboard</h1>
@@ -37,7 +41,7 @@ export default function KeyboardPage() {
 				<textarea id="text" name="text" value={baybayinText} readOnly />
 			</label>
 
-			<button>clear</button>
+			<button onClick={handleClear}>clear</button>
 
 			<Keyboard keyboardDisplay={keyboardDisplay} handleInput={handleInput} />
 
