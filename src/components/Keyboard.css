@@ -1,20 +1,25 @@
 .Keyboard {
-	display: flex;
+	width: 400px;
+	display: grid;
+	grid-template-columns: repeat(7, 1fr);
+	grid-template-rows: repeat(3, 1fr);
 
 	button {
 		aspect-ratio: 1;
 	}
 
 	.characters {
-		width: 400px;
+		grid-column: span 6;
+		grid-row: 1 / -1;
 		display: grid;
-		grid-template-columns: repeat(6, 1fr);
-		grid-template-rows: repeat(3, 1fr);
+		grid-template-columns: subgrid;
+		grid-template-rows: subgrid;
 		grid-auto-flow: column;
 	}
 
 	.functions {
-		display: flex;
-		flex-direction: column;
+		grid-row: 1 / -1;
+		display: grid;
+		grid-template-rows: subgrid;
 	}
 }
