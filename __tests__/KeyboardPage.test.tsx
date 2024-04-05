@@ -10,7 +10,7 @@ describe('KeyboardPage', () => {
 	beforeAll(async () => {
 		render(<KeyboardPage />);
 		textarea = await screen.findByLabelText('Baybayin text');
-		clearButton = await screen.findByText('clear');
+		clearButton = await screen.findByLabelText('clear');
 	});
 
 	afterEach(() => {
@@ -42,7 +42,7 @@ describe('KeyboardPage', () => {
 		fireEvent.click(screen.getByLabelText('nga'));
 		expect(textarea.textContent).toBe(convertToBaybayin('nganga'));
 
-		fireEvent.click(screen.getByText('delete'));
+		fireEvent.click(screen.getByLabelText('delete'));
 		expect(textarea.textContent).toBe(convertToBaybayin('nga'));
 	});
 });

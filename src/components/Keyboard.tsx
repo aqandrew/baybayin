@@ -58,9 +58,11 @@ export default function Keyboard({
 			</div>
 
 			<div className="functions">
-				<button onClick={handleDelete}>delete</button>
-				<button>space</button>
-				<button>return</button>
+				<button aria-label="delete" onClick={handleDelete}>
+					delete
+				</button>
+				<button aria-label="space">space</button>
+				<button aria-label="return">return</button>
 			</div>
 		</div>
 	);
