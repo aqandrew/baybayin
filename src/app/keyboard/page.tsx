@@ -40,7 +40,9 @@ export default function KeyboardPage() {
 		<>
 			<h1>keyboard</h1>
 
-			<button onClick={handleClear}>clear</button>
+			<button onClick={handleClear} aria-label="clear">
+				clear
+			</button>
 			<label className="text-output">
 				Baybayin text
 				<textarea id="text" name="text" value={baybayinText} readOnly />
