@@ -13,7 +13,11 @@ button[aria-label='clear'] {
 	}
 }
 
-.radio-group {
-	display: flex;
-	gap: 1rem;
+fieldset {
+	margin-top: 1lh;
+
+	.radio-group {
+		display: flex;
+		gap: 1rem;
+	}
 }
