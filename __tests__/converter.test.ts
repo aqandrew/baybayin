@@ -106,4 +106,39 @@ describe('converter', () => {
 			].join('')
 		);
 	});
+
+	test('multiple words', () => {
+		const tokens = tokenize('kaya kong sumulat sa baybayin');
+		const output = convert(tokens);
+		expect(output).toEqual(
+			[
+				BAYBAYIN.ka,
+				BAYBAYIN.ya,
+				' ',
+				BAYBAYIN.ka,
+				BAYBAYIN.vowelSign.u,
+				BAYBAYIN.nga,
+				BAYBAYIN.virama.kudlit,
+				' ',
+				BAYBAYIN.sa,
+				BAYBAYIN.vowelSign.u,
+				BAYBAYIN.ma,
+				BAYBAYIN.vowelSign.u,
+				BAYBAYIN.la,
+				BAYBAYIN.ta,
+				BAYBAYIN.virama.kudlit,
+				' ',
+				BAYBAYIN.sa,
+				' ',
+				BAYBAYIN.ba,
+				BAYBAYIN.ya,
+				BAYBAYIN.virama.kudlit,
+				BAYBAYIN.ba,
+				BAYBAYIN.ya,
+				BAYBAYIN.vowelSign.i,
+				BAYBAYIN.na,
+				BAYBAYIN.virama.kudlit,
+			].join('')
+		);
+	});
 });

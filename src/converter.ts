@@ -99,6 +99,8 @@ export function convert(tokens: Token[]) {
 				? BAYBAYIN.punctuation.single
 				: isPunctuationDouble(lexeme)
 				? BAYBAYIN.punctuation.double
+				: lexeme === ' '
+				? lexeme
 				: BAYBAYIN[lexeme as keyof typeof BAYBAYIN]
 		)
 		.join('');
