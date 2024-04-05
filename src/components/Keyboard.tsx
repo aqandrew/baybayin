@@ -1,6 +1,6 @@
 import { MouseEventHandler } from 'react';
 import { BAYBAYIN } from '@/converter';
-import { KeyboardDisplay } from '@/app/keyboard/page';
+import { LabelStyle } from '@/app/keyboard/page';
 import './Keyboard.css';
 
 const KEYS: (keyof typeof BAYBAYIN)[] = [
@@ -25,13 +25,13 @@ const KEYS: (keyof typeof BAYBAYIN)[] = [
 ];
 
 interface KeyboardProps {
-	keyboardDisplay: KeyboardDisplay;
+	labelStyle: LabelStyle;
 	handleInput: MouseEventHandler;
 	handleDelete: MouseEventHandler;
 }
 
 export default function Keyboard({
-	keyboardDisplay,
+	labelStyle,
 	handleInput,
 	handleDelete,
 }: KeyboardProps) {
@@ -40,14 +40,14 @@ export default function Keyboard({
 			<div className="characters">
 				{KEYS.map((key) => {
 					const character = BAYBAYIN[key];
-					const label: { [K in KeyboardDisplay]: string } = {
+					const label: { [K in LabelStyle]: string } = {
 						latin: key,
 						baybayin: character as string,
 						both: `${character}<br />${key}`,
 					};
 					return (
 						<button
-							dangerouslySetInnerHTML={{ __html: label[keyboardDisplay] }}
+							dangerouslySetInnerHTML={{ __html: label[labelStyle] }}
 							aria-label={key}
 							data-character={character}
 							onClick={handleInput}

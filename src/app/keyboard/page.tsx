@@ -4,21 +4,20 @@ import { ChangeEvent, MouseEvent, useState } from 'react';
 import Keyboard from '@/components/Keyboard';
 import './page.css';
 
-const keyboardDisplays = ['latin', 'baybayin', 'both'] as const;
-export type KeyboardDisplay = (typeof keyboardDisplays)[number];
+const labelStyles = ['latin', 'baybayin', 'both'] as const;
+export type LabelStyle = (typeof labelStyles)[number];
 
 export default function KeyboardPage() {
 	const [baybayinText, setBaybayinText] = useState('');
-	const [keyboardDisplay, setKeyboardDisplay] =
-		useState<KeyboardDisplay>('latin');
+	const [labelStyle, setLabelStyle] = useState<LabelStyle>('latin');
 
-	function isKeyboardDisplayChecked(value: KeyboardDisplay) {
-		return keyboardDisplay === value;
+	function isLabelStyleChecked(value: LabelStyle) {
+		return labelStyle === value;
 	}
 
-	function handleKeyboardDisplayChange(event: ChangeEvent) {
+	function handleLabelStyleDisplayChange(event: ChangeEvent) {
 		const { target } = event;
-		setKeyboardDisplay((target as HTMLInputElement).value as KeyboardDisplay);
+		setLabelStyle((target as HTMLInputElement).value as LabelStyle);
 	}
 
 	function handleInput(event: MouseEvent) {
@@ -49,25 +48,29 @@ export default function KeyboardPage() {
 			</label>
 
 			<Keyboard
-				keyboardDisplay={keyboardDisplay}
+				labelStyle={labelStyle}
 				handleInput={handleInput}
 				handleDelete={handleDelete}
 			/>
 
-			<div className="radio-group">
-				{keyboardDisplays.map((display) => (
-					<label key={display}>
-						<input
-							type="radio"
-							name="keyboard-display"
-							value={display}
-							checked={isKeyboardDisplayChecked(display)}
-							onChange={handleKeyboardDisplayChange}
-						/>
-						{display}
-					</label>
-				))}
-			</div>
+			<fieldset>
+				<legend>labels</legend>
+
+				<div className="radio-group">
+					{labelStyles.map((labelStyle) => (
+						<label key={labelStyle}>
+							<input
+								type="radio"
+								name="label"
+								value={labelStyle}
+								checked={isLabelStyleChecked(labelStyle)}
+								onChange={handleLabelStyleDisplayChange}
+							/>
+							{labelStyle}
+						</label>
+					))}
+				</div>
+			</fieldset>
 		</>
 	);
 }
