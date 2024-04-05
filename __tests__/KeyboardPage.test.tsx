@@ -30,13 +30,19 @@ describe('KeyboardPage', () => {
 	});
 
 	test('clear button', () => {
-		fireEvent.click(screen.getByLabelText('nga'));
-		fireEvent.click(screen.getByLabelText('nga'));
-
-		expect(textarea.textContent).toBe(convertToBaybayin('nganga'));
+		fireEvent.click(screen.getByLabelText('pa'));
+		expect(textarea.textContent).toBe(convertToBaybayin('pa'));
 
 		fireEvent.click(clearButton);
-
 		expect(textarea.textContent).toBe('');
+	});
+
+	test('delete button', () => {
+		fireEvent.click(screen.getByLabelText('nga'));
+		fireEvent.click(screen.getByLabelText('nga'));
+		expect(textarea.textContent).toBe(convertToBaybayin('nganga'));
+
+		fireEvent.click(screen.getByText('delete'));
+		expect(textarea.textContent).toBe(convertToBaybayin('nga'));
 	});
 });

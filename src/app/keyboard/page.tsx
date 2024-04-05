@@ -28,6 +28,10 @@ export default function KeyboardPage() {
 		);
 	}
 
+	function handleDelete() {
+		setBaybayinText(baybayinText.substring(0, baybayinText.length - 1));
+	}
+
 	function handleClear() {
 		setBaybayinText('');
 	}
@@ -43,7 +47,11 @@ export default function KeyboardPage() {
 
 			<button onClick={handleClear}>clear</button>
 
-			<Keyboard keyboardDisplay={keyboardDisplay} handleInput={handleInput} />
+			<Keyboard
+				keyboardDisplay={keyboardDisplay}
+				handleInput={handleInput}
+				handleDelete={handleDelete}
+			/>
 
 			<div className="radio-group">
 				{keyboardDisplays.map((display) => (

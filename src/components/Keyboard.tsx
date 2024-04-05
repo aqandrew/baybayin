@@ -27,11 +27,13 @@ const KEYS: (keyof typeof BAYBAYIN)[] = [
 interface KeyboardProps {
 	keyboardDisplay: KeyboardDisplay;
 	handleInput: MouseEventHandler;
+	handleDelete: MouseEventHandler;
 }
 
 export default function Keyboard({
 	keyboardDisplay,
 	handleInput,
+	handleDelete,
 }: KeyboardProps) {
 	return (
 		<div className="Keyboard">
@@ -56,7 +58,7 @@ export default function Keyboard({
 			</div>
 
 			<div className="functions">
-				<button>delete</button>
+				<button onClick={handleDelete}>delete</button>
 				<button>space</button>
 				<button>return</button>
 			</div>
