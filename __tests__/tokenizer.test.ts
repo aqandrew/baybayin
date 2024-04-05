@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest';
-import { tokenize } from './tokenizer';
+import { tokenize } from '@/tokenizer';
 
 describe('tokenizer', () => {
 	test('empty input', () => {

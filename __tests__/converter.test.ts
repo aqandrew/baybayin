@@ -1,6 +1,6 @@
 import { describe, expect, test } from 'vitest';
-import { tokenize } from './tokenizer';
-import { BAYBAYIN, convert } from './converter';
+import { tokenize } from '@/tokenizer';
+import { BAYBAYIN, convert } from '@/converter';
 
 describe('converter', () => {
 	test('talaga', () => {
