@@ -2,6 +2,11 @@
 	--width-content: 400px;
 }
 
+main {
+	max-width: var(--width-content);
+	margin-inline: auto;
+}
+
 header nav {
 	display: flex;
 	gap: 1rem;
