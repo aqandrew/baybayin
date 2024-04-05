@@ -1,3 +1,13 @@
+.text-output {
+	width: var(--width-content);
+	display: inline-flex;
+	flex-direction: column;
+
+	textarea {
+		aspect-ratio: 4;
+	}
+}
+
 .radio-group {
 	display: flex;
 	gap: 1rem;

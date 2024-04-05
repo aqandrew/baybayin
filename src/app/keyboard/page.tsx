@@ -32,10 +32,12 @@ export default function KeyboardPage() {
 		<>
 			<h1>keyboard</h1>
 
-			<label>
+			<label className="text-output">
 				Baybayin text
 				<textarea id="text" name="text" value={baybayinText} readOnly />
 			</label>
+
+			<button>clear</button>
 
 			<Keyboard keyboardDisplay={keyboardDisplay} handleInput={handleInput} />
 
