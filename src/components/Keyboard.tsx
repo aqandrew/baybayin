@@ -1,6 +1,6 @@
 import { MouseEventHandler } from 'react';
 import { BAYBAYIN } from '@/converter';
-import { LabelStyle } from '@/app/keyboard/page';
+import { LabelStyle } from '@/types';
 import './Keyboard.css';
 
 const KEYS: (keyof typeof BAYBAYIN)[] = [

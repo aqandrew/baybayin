@@ -1,11 +1,9 @@
 'use client';
 
 import { ChangeEvent, MouseEvent, useState } from 'react';
+import { LabelStyle, LABEL_STYLES } from '@/types';
 import Keyboard from '@/components/Keyboard';
 import './page.css';
-
-const labelStyles = ['latin', 'baybayin', 'both'] as const;
-export type LabelStyle = (typeof labelStyles)[number];
 
 export default function KeyboardPage() {
 	const [baybayinText, setBaybayinText] = useState('');
@@ -57,7 +55,7 @@ export default function KeyboardPage() {
 				<legend>labels</legend>
 
 				<div className="radio-group">
-					{labelStyles.map((labelStyle) => (
+					{LABEL_STYLES.map((labelStyle) => (
 						<label key={labelStyle}>
 							<input
 								type="radio"
