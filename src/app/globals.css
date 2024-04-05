@@ -1,5 +1,8 @@
 :root {
 	--width-content: 400px;
+	--color-function: oklch(80% 0 0);
+	--color-function-hover: oklch(from var(--color-function) calc(l - 0.05) c h);
+	--color-function-active: oklch(from var(--color-function) calc(l + 0.05) c h);
 }
 
 main {

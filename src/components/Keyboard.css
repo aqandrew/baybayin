@@ -20,5 +20,17 @@
 		grid-row: 1 / -1;
 		display: grid;
 		grid-template-rows: subgrid;
+
+		button {
+			background-color: var(--color-function);
+
+			&:hover {
+				background-color: var(--color-function-hover);
+			}
+
+			&:active {
+				background-color: var(--color-function-active);
+			}
+		}
 	}
 }
