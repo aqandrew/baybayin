@@ -1,11 +1,20 @@
 .Keyboard {
-	max-width: 400px;
-	display: grid;
-	grid-template-columns: repeat(6, 1fr);
-	grid-template-rows: repeat(3, 1fr);
-	grid-auto-flow: column;
+	display: flex;
 
 	button {
 		aspect-ratio: 1;
+	}
+
+	.characters {
+		width: 400px;
+		display: grid;
+		grid-template-columns: repeat(6, 1fr);
+		grid-template-rows: repeat(3, 1fr);
+		grid-auto-flow: column;
+	}
+
+	.functions {
+		display: flex;
+		flex-direction: column;
 	}
 }

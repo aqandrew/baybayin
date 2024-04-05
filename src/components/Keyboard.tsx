@@ -35,24 +35,31 @@ export default function Keyboard({
 }: KeyboardProps) {
 	return (
 		<div className="Keyboard">
-			{KEYS.map((key) => {
-				const character = BAYBAYIN[key];
-				const label: { [K in KeyboardDisplay]: string } = {
-					latin: key,
-					baybayin: character as string,
-					both: `${character}<br />${key}`,
-				};
+			<div className="characters">
+				{KEYS.map((key) => {
+					const character = BAYBAYIN[key];
+					const label: { [K in KeyboardDisplay]: string } = {
+						latin: key,
+						baybayin: character as string,
+						both: `${character}<br />${key}`,
+					};
+					return (
+						<button
+							dangerouslySetInnerHTML={{ __html: label[keyboardDisplay] }}
+							aria-label={key}
+							data-character={character}
+							onClick={handleInput}
+							key={key}
+						/>
+					);
+				})}
+			</div>
 
-				return (
-					<button
-						dangerouslySetInnerHTML={{ __html: label[keyboardDisplay] }}
-						aria-label={key}
-						data-character={character}
-						onClick={handleInput}
-						key={key}
-					/>
-				);
-			})}
+			<div className="functions">
+				<button>delete</button>
+				<button>space</button>
+				<button>return</button>
+			</div>
 		</div>
 	);
 }
