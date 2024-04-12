@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
 	async redirects() {
-		return [{ source: '/', destination: '/converter', permanent: true }];
+		return [{ source: '/', destination: '/keyboard', permanent: true }];
 	},
 };
 
