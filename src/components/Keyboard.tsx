@@ -1,6 +1,10 @@
-import { MouseEventHandler } from 'react';
+import { MouseEventHandler, useState } from 'react';
+import { useLongPress } from 'react-aria';
 import { BAYBAYIN } from '@/converter';
-import { LabelStyle } from '@/types';
+import { LabelStyle, Token } from '@/types';
+import { isVowel } from '@/utils';
+import { createPortal } from 'react-dom';
+import FlickMenu from './FlickMenu';
 import './Keyboard.css';
 
 const KEYS: (keyof typeof BAYBAYIN)[] = [
@@ -35,35 +39,69 @@ export default function Keyboard({
 	handleInput,
 	handleDelete,
 }: KeyboardProps) {
+	const [flickMenuCharacter, setFlickMenuCharacter] = useState<
+		keyof typeof BAYBAYIN | null
+	>(null);
+	const { longPressProps } = useLongPress({
+		accessibilityDescription: 'Long press to show different vowels',
+		onLongPress: (event) => {
+			console.log('longpress was triggered');
+			const baseCharacter = event.target.ariaLabel;
+			setFlickMenuCharacter(baseCharacter);
+			console.log({ baseCharacter });
+		},
+	});
+
+	function _handleInput(event) {
+		if (flickMenuCharacter) {
+			setFlickMenuCharacter(null);
+		}
+
+		handleInput(event);
+	}
+
 	return (
-		<div className="Keyboard">
-			<div className="characters">
-				{KEYS.map((key) => {
-					const character = BAYBAYIN[key];
-					const label: { [K in LabelStyle]: string } = {
-						latin: key,
-						baybayin: character as string,
-						both: `${character}<br />${key}`,
-					};
-					return (
-						<button
-							dangerouslySetInnerHTML={{ __html: label[labelStyle] }}
-							aria-label={key}
-							data-character={character}
-							onClick={handleInput}
-							key={key}
-						/>
-					);
-				})}
+		<>
+			<div className="Keyboard">
+				<div className="characters">
+					{KEYS.map((key) => {
+						const character = BAYBAYIN[key];
+						const label: { [K in LabelStyle]: string } = {
+							latin: key,
+							baybayin: character as string,
+							both: `${character}<br />${key}`,
+						};
+						const shouldLongPress = !isVowel(key as Token);
+
+						return (
+							<button
+								dangerouslySetInnerHTML={{ __html: label[labelStyle] }}
+								aria-label={key}
+								data-character={character}
+								{...(shouldLongPress && longPressProps)}
+								onClick={_handleInput}
+								onMouseUp={() => console.log('mouseup')}
+								key={key}
+							/>
+						);
+					})}
+				</div>
+
+				<div className="functions">
+					<button aria-label="delete" onClick={handleDelete}>
+						delete
+					</button>
+					<button aria-label="space">space</button>
+					<button aria-label="return">return</button>
+				</div>
 			</div>
 
-			<div className="functions">
-				<button aria-label="delete" onClick={handleDelete}>
-					delete
-				</button>
-				<button aria-label="space">space</button>
-				<button aria-label="return">return</button>
-			</div>
-		</div>
+			{flickMenuCharacter
+				? createPortal(
+						<FlickMenu baseCharacter={flickMenuCharacter} />,
+						document.body
+				  )
+				: null}
+		</>
 	);
 }

@@ -12,6 +12,7 @@
 	"dependencies": {
 		"next": "14.0.4",
 		"react": "^18",
+		"react-aria": "^3.32.1",
 		"react-dom": "^18",
 		"vite-tsconfig-paths": "^4.3.2"
 	},
