@@ -84,24 +84,24 @@ function lex(tokens: Token[]) {
 	return lexemes;
 }
 
+const LEXEMES_TO_BAYBAYIN: { [K in Lexeme]?: string } = {
+	final: BAYBAYIN.virama.kudlit,
+	markU: BAYBAYIN.vowelSign.u,
+	markI: BAYBAYIN.vowelSign.i,
+	',': BAYBAYIN.punctuation.single,
+	' ': ' ',
+};
+
 export function convert(tokens: Token[]) {
 	const lexemes = lex(tokens);
 
 	return lexemes
-		.map((lexeme) =>
-			lexeme === 'final'
-				? BAYBAYIN.virama.kudlit
-				: lexeme === 'markU'
-				? BAYBAYIN.vowelSign.u
-				: lexeme === 'markI'
-				? BAYBAYIN.vowelSign.i
-				: lexeme === ','
-				? BAYBAYIN.punctuation.single
-				: isPunctuationDouble(lexeme)
-				? BAYBAYIN.punctuation.double
-				: lexeme === ' '
-				? lexeme
-				: BAYBAYIN[lexeme as keyof typeof BAYBAYIN]
+		.map(
+			(lexeme) =>
+				LEXEMES_TO_BAYBAYIN[lexeme] ??
+				(isPunctuationDouble(lexeme)
+					? BAYBAYIN.punctuation.double
+					: BAYBAYIN[lexeme as keyof typeof BAYBAYIN])
 		)
 		.join('');
 }
