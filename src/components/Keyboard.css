@@ -5,6 +5,7 @@
 
 	button {
 		aspect-ratio: 1;
+		user-select: none;
 	}
 
 	.characters {
