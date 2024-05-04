@@ -35,7 +35,7 @@ export default function KeyboardPage() {
 
 	return (
 		<>
-			<h1>keyboard</h1>
+			<h1>Baybayin keyboard</h1>
 
 			<button onClick={handleClear} aria-label="clear">
 				clear

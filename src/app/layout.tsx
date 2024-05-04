@@ -19,12 +19,12 @@ export default function RootLayout({
 		<html lang="en">
 			<body className={inter.className}>
 				<>
-					<header>
+					{/* <header>
 						<nav>
 							<Link href="/converter">converter</Link>
 							<Link href="/keyboard">keyboard</Link>
 						</nav>
-					</header>
+					</header> */}
 					<main>{children}</main>
 				</>
 			</body>
