@@ -79,6 +79,9 @@ export default function Keyboard({
 								disabled={
 									flickMenuKey !== null && flickMenuKey.ariaLabel !== key
 								}
+								className={
+									flickMenuKey?.ariaLabel === key ? 'long-pressed' : undefined
+								}
 								key={key}
 							/>
 						);
