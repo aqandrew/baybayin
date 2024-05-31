@@ -45,7 +45,6 @@ export default function Keyboard({
 	const { longPressProps } = useLongPress({
 		accessibilityDescription: 'Long press to show different vowels',
 		onLongPress: (event) => {
-			console.log('longpress was triggered');
 			const baseCharacter = event.target.ariaLabel;
 			setFlickMenuCharacter(baseCharacter);
 			console.log({ baseCharacter });
@@ -71,14 +70,14 @@ export default function Keyboard({
 							baybayin: character as string,
 							both: `${character}<br />${key}`,
 						};
-						const shouldLongPress = !isVowel(key as Token);
+						const canLongPress = !isVowel(key as Token);
 
 						return (
 							<button
 								dangerouslySetInnerHTML={{ __html: label[labelStyle] }}
 								aria-label={key}
 								data-character={character}
-								{...(shouldLongPress && longPressProps)}
+								{...(canLongPress && longPressProps)}
 								onClick={_handleInput}
 								onMouseUp={() => console.log('mouseup')}
 								key={key}
