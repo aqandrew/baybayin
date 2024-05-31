@@ -1,16 +1,17 @@
-import { BAYBAYIN } from '@/converter';
 import './FlickMenu.css';
 
 interface FlickMenuProps {
-	baseCharacter: keyof typeof BAYBAYIN;
+	baseKey: HTMLButtonElement;
 }
 
-export default function FlickMenu({ baseCharacter }: FlickMenuProps) {
+export default function FlickMenu({ baseKey }: FlickMenuProps) {
+	const { top, left } = baseKey.getBoundingClientRect();
+
 	return (
-		<div className="FlickMenu">
-			<button>left</button>
-			<button>top</button>
-			<button>right</button>
+		<div className="FlickMenu" style={{ top, left }}>
+			<button className="left">left</button>
+			<button className="top">top</button>
+			<button className="right">right</button>
 		</div>
 	);
 }

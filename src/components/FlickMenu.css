@@ -1,3 +1,20 @@
 .FlickMenu {
 	position: absolute;
+
+	button {
+		position: absolute;
+		background-color: red;
+
+		&.left {
+			right: 0;
+		}
+
+		&.top {
+			bottom: 0;
+		}
+
+		&.right {
+			left: var(--width-key);
+		}
+	}
 }

@@ -4,6 +4,7 @@
 	grid-template-rows: repeat(3, 1fr);
 
 	button {
+		width: var(--width-key);
 		aspect-ratio: 1;
 		user-select: none;
 	}
