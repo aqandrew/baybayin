@@ -38,18 +38,19 @@ export default function Keyboard({
 	handleInput,
 	handleDelete,
 }: KeyboardProps) {
-	const [flickMenuCharacter, setFlickMenuCharacter] =
-		useState<HTMLButtonElement | null>(null);
+	const [flickMenuKey, setFlickMenuKey] = useState<HTMLButtonElement | null>(
+		null
+	);
 	const { longPressProps } = useLongPress({
 		accessibilityDescription: 'Long press to show different vowels',
 		onLongPress: (event) => {
-			setFlickMenuCharacter(event.target as HTMLButtonElement);
+			setFlickMenuKey(event.target as HTMLButtonElement);
 		},
 	});
 
 	function _handleInput(event) {
-		if (flickMenuCharacter) {
-			setFlickMenuCharacter(null);
+		if (flickMenuKey) {
+			setFlickMenuKey(null);
 		}
 
 		handleInput(event);
@@ -89,7 +90,7 @@ export default function Keyboard({
 					<button aria-label="return">return</button>
 				</div>
 
-				{flickMenuCharacter ? <FlickMenu baseKey={flickMenuCharacter} /> : null}
+				{flickMenuKey ? <FlickMenu baseKey={flickMenuKey} /> : null}
 			</div>
 		</>
 	);
