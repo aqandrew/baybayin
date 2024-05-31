@@ -3,7 +3,11 @@
 
 	button {
 		position: absolute;
-		background-color: red;
+
+		&:hover {
+			background-color: blue;
+			color: white;
+		}
 
 		&.left {
 			right: 0;

@@ -76,6 +76,9 @@ export default function Keyboard({
 								data-character={character}
 								{...(canLongPress && longPressProps)}
 								onClick={_handleInput}
+								disabled={
+									flickMenuKey !== null && flickMenuKey.ariaLabel !== key
+								}
 								key={key}
 							/>
 						);
