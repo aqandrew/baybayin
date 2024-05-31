@@ -1,7 +1,7 @@
 import { MouseEventHandler, useState } from 'react';
 import { useLongPress } from 'react-aria';
 import { BAYBAYIN } from '@/converter';
-import { LabelStyle, Token } from '@/types';
+import { Label, LabelStyle, Token } from '@/types';
 import { isVowel } from '@/utils';
 import FlickMenu from './FlickMenu';
 import './Keyboard.css';
@@ -62,7 +62,7 @@ export default function Keyboard({
 				<div className="characters">
 					{KEYS.map((key) => {
 						const character = BAYBAYIN[key];
-						const label: { [K in LabelStyle]: string } = {
+						const label: Label = {
 							latin: key,
 							baybayin: character as string,
 							both: `${character}<br />${key}`,
@@ -93,7 +93,9 @@ export default function Keyboard({
 					<button aria-label="return">return</button>
 				</div>
 
-				{flickMenuKey ? <FlickMenu baseKey={flickMenuKey} /> : null}
+				{flickMenuKey ? (
+					<FlickMenu baseKey={flickMenuKey} labelStyle={labelStyle} />
+				) : null}
 			</div>
 		</>
 	);

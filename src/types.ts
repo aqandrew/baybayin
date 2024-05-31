@@ -38,3 +38,4 @@ export type Lexeme = Token | 'final' | 'markU' | 'markI' | ' ';
 
 export const LABEL_STYLES = ['latin', 'baybayin', 'both'] as const;
 export type LabelStyle = (typeof LABEL_STYLES)[number];
+export type Label = { [K in LabelStyle]: string };
