@@ -1,4 +1,4 @@
-import { MouseEventHandler, useState } from 'react';
+import { MouseEventHandler, useEffect, useState } from 'react';
 import { useLongPress } from 'react-aria';
 import { BAYBAYIN } from '@/converter';
 import { Label, LabelStyle, Token } from '@/types';
@@ -45,6 +45,13 @@ export default function Keyboard({
 		accessibilityDescription: 'Long press to show different vowels',
 		onLongPress: (event) => {
 			setFlickMenuKey(event.target as HTMLButtonElement);
+			console.log('longpress', event.target.ariaLabel);
+		},
+		onLongPressStart: (event) => {
+			console.log('longpressstart', event.target.ariaLabel);
+		},
+		onLongPressEnd: (event) => {
+			console.log('longpressend', event.target.ariaLabel);
 		},
 	});
 
@@ -55,6 +62,12 @@ export default function Keyboard({
 
 		handleInput(event);
 	}
+
+	useEffect(() => {
+		document.addEventListener('mouseup', (event) => {
+			console.log('mouseup', (event?.target as HTMLButtonElement).ariaLabel);
+		});
+	}, []);
 
 	return (
 		<>

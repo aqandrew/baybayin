@@ -39,14 +39,17 @@ export default function FlickMenu({ baseKey, labelStyle }: FlickMenuProps) {
 			<button
 				className="left"
 				dangerouslySetInnerHTML={{ __html: labelIE[labelStyle] }}
+				aria-label={latinIE}
 			/>
 			<button
 				className="top"
 				dangerouslySetInnerHTML={{ __html: labelVirama[labelStyle] }}
+				aria-label={consonant}
 			/>
 			<button
 				className="right"
 				dangerouslySetInnerHTML={{ __html: labelUO[labelStyle] }}
+				aria-label={latinUO}
 			/>
 		</div>
 	);
